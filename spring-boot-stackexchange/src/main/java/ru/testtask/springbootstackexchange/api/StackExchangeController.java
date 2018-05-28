@@ -1,5 +1,6 @@
 package ru.testtask.springbootstackexchange.api;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.List;
  * Контроллер для rest api
  */
 @Controller
+@EnableAutoConfiguration
 @RequestMapping("api/rest")
 public class StackExchangeController {
     private final StackExchangService stackExchangService;
@@ -25,9 +27,9 @@ public class StackExchangeController {
     @RequestMapping(value = "/questions",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    public ResponseEntity<List<StackExchangeItem>> getQuestions(@RequestParam(value = "findstring") String findString,
-                                                                @RequestParam(value = "offset") Long offset,
-                                                                @RequestParam(value = "limit") Long limit) {
+    public ResponseEntity<List<StackExchangeItem>> getQuestions(@RequestParam(value = "findstring", required = false) String findString,
+                                                                @RequestParam(value = "offset", defaultValue = "0") Long offset,
+                                                                @RequestParam(value = "limit", defaultValue = "100") Long limit) {
         try{
             return ResponseEntity.ok(stackExchangService.getQuestions(findString, offset, limit));
         }
