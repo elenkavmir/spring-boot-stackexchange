@@ -27,8 +27,8 @@ public class StackExchangeController {
     @RequestMapping(value = "/questions",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    public ResponseEntity<List<StackExchangeItem>> getQuestions(@RequestParam(value = "findstring", required = false) String findString,
-                                                                @RequestParam(value = "offset", defaultValue = "0") Long offset,
+    public ResponseEntity<List<StackExchangeItem>> getQuestions(@RequestParam(value = "findstring", required = true) String findString,
+                                                                @RequestParam(value = "offset", defaultValue = "1") Long offset, //fixme min value 1
                                                                 @RequestParam(value = "limit", defaultValue = "100") Long limit) {
         try{
             return ResponseEntity.ok(stackExchangService.getQuestions(findString, offset, limit));

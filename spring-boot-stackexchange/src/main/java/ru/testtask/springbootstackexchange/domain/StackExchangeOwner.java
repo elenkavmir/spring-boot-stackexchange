@@ -1,20 +1,27 @@
 package ru.testtask.springbootstackexchange.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Пользователь, породивший запрос
  */
-public class StackExchangeoOwner {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class StackExchangeOwner {
     /**
      * Идентификатор пользователя
      */
+    @JsonProperty("user_id")
     Long userId;
     /**
      * ссылка на изображение профиля полльзователя
      */
+    @JsonProperty("profile_image")
     String profileImgUrl;
     /**
      * Логин пользователя
      */
+    @JsonProperty("display_name")
     String displayName;
     /**
      * ссылка на профиль пользователя

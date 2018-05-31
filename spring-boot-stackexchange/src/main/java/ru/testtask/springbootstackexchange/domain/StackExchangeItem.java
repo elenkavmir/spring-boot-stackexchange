@@ -1,11 +1,15 @@
 package ru.testtask.springbootstackexchange.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.util.List;
 
 /**
  * Информация по вопросу
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StackExchangeItem {
     /**
      * Теги вопроса
@@ -14,30 +18,36 @@ public class StackExchangeItem {
     /**
      * Пользователь, задавший вопрос
      */
-    StackExchangeoOwner owner;
+    StackExchangeOwner owner;
     /**
      * Есть ли решение вопроса
      */
+    @JsonProperty("is_answered")
     Boolean isAnswered;
     /**
      * Количество ответов на вопрос
      */
+    @JsonProperty("answer_count")
     Long answerCount;
     /**
      * Дата последней активности по вопросу
      */
+    @JsonProperty("last_activity_date")
     Date lastActivityDate;
     /**
      * Дата создания вопроса
      */
+    @JsonProperty("creation_date")
     Date createDate;
     /**
      * Дата последнего редактирования вопроса
      */
+    @JsonProperty("last_edit_date")
     Date lastEditDate;
     /**
      * Идентификатор вопроса
      */
+    @JsonProperty("question_id")
     Long questionId;
     /**
      * Ссылка на вопрос
@@ -56,11 +66,11 @@ public class StackExchangeItem {
         this.tags = tags;
     }
 
-    public StackExchangeoOwner getOwner() {
+    public StackExchangeOwner getOwner() {
         return owner;
     }
 
-    public void setOwner(StackExchangeoOwner owner) {
+    public void setOwner(StackExchangeOwner owner) {
         this.owner = owner;
     }
 
