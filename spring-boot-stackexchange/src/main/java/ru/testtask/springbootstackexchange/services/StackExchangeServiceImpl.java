@@ -1,25 +1,19 @@
 package ru.testtask.springbootstackexchange.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.http.*;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import ru.testtask.springbootstackexchange.domain.StackExchangeItem;
-import ru.testtask.springbootstackexchange.domain.StackExchangeOwner;
+import ru.testtask.springbootstackexchange.domain.StackExchangeWrapper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.io.*;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * Сервис получения данных из StackExchange
  */
-@Service
+//@Service
 public class StackExchangeServiceImpl implements StackExchangService {
 
     static final String urlStackExchange = "http://api.stackexchange.com/2.2";
@@ -36,7 +30,7 @@ public class StackExchangeServiceImpl implements StackExchangService {
      * @return список вопросов StackExchangeItem
      */
     @Override
-    public List<StackExchangeItem> getQuestions(String findString, Long offset, Long limit) {
+    public StackExchangeWrapper getQuestions(String findString, Long offset, Long limit) {
         /*List<StackExchangeItem> items = new ArrayList<>();
         StackExchangeOwner owner = new StackExchangeOwner();
         owner.setDisplayName("sdfvsdfb");
@@ -55,8 +49,7 @@ public class StackExchangeServiceImpl implements StackExchangService {
                 + "&intitle=" + findString
                 + ((offset != null) ? "&page=" + offset : "")
                 + ((limit != null) ? "&pagesize=" + limit : ""); // todo url encode
-
-        RestTemplate restTemplate = new RestTemplate();
+/*        RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<List<StackExchangeItem>> listResponseEntity = restTemplate.exchange(
                     "http://api.stackexchange.com/2.2/search?site=stackoverflow&page=1&pagesize=10&order=desc&sort=activity&intitle=java&filter=default",
@@ -68,16 +61,65 @@ public class StackExchangeServiceImpl implements StackExchangService {
             }
         } catch (RestClientException e) {
             throw e;
-        }
+        }*/
 
-/*        try {
-        RestTemplate restTemplate = new RestTemplate();
-        String page = restTemplate.getForObject("http://api.stackexchange.com/2.2/search?site=stackoverflow&page=1&pagesize=10&order=desc&sort=activity&intitle=java&filter=default", String.class);
-        System.out.println(page);
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+
+            String url_ = "https://api.stackexchange.com/2.2/search?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=activity&intitle=java&filter=default";
+//            String page = restTemplate.getForObject(
+//                    url_,
+//                    String.class);
+//            System.out.println(page);
+//
+//                String decom = decompress(page.getBytes("UTF-8"));
+//                System.out.println(decom);
+
+
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Accept-Encoding", "gzip");
+            HttpEntity entity = new HttpEntity(headers);
+
+            ResponseEntity<String> response = restTemplate.exchange(
+                    url_, HttpMethod.GET, entity, String.class);
+
+            System.out.println(response.toString());
         } catch (RestClientException e) {
             throw e;
-        }*/
+//        } catch (IOException e){
+//            System.out.println(e);
+        } catch (Exception e){
+            throw e;
+        }
 
         return null;
     }
+
+    public static byte[] compress(String data) throws IOException {
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(data.length());
+        GZIPOutputStream gzip = new GZIPOutputStream(bos);
+        gzip.write(data.getBytes());
+        gzip.close();
+        byte[] compressed = bos.toByteArray();
+        bos.close();
+        return compressed;
+    }
+
+    public static String decompress(byte[] compressed) throws IOException {
+        ByteArrayInputStream bis = new ByteArrayInputStream(compressed);
+        GZIPInputStream gis = new GZIPInputStream(bis);
+        BufferedReader br = new BufferedReader(new InputStreamReader(gis, "UTF-8"));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        br.close();
+        gis.close();
+        bis.close();
+        return sb.toString();
+    }
+
+
 }
