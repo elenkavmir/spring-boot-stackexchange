@@ -3,6 +3,7 @@ package ru.testtask.springbootstackexchange.api;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Controller
 @EnableAutoConfiguration
+@CrossOrigin(origins = "*")
 @RequestMapping("api/rest")
 public class StackExchangeController {
     private final StackExchangService stackExchangService;

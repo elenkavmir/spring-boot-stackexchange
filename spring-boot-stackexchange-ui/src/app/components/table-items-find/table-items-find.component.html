@@ -1,0 +1,22 @@
+<ng-container *ngIf="wrapp">
+  <table class="table table-hover table-sm thead-light">
+    <thead>
+     <tr>
+       <td>Title</td>
+       <td>Owner</td>
+       <td>DateCreate</td>
+       <td>Ответ</td>
+       <td>Tags</td>
+     </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of wrapp.items" [ngClass]="{'table-success': item.is_answered}">
+      <td><a [href]="item.link">{{item.title}}</a></td>
+      <td><a [href]="item.owner.link">{{item.owner.display_name}}</a></td>
+      <td>{{item.creation_date | date: 'dd.MM.yyyy'}}</td>
+      <td>{{item.is_answered}}</td>
+      <td><span *ngFor="let tag of item.tags">{{tag}} </span></td>
+    </tr>
+    </tbody>
+  </table>
+</ng-container>
