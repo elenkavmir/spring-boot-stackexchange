@@ -1,4 +1,4 @@
-<div class="form-inline">
+<div class="form-inline" (keydown)="keyDownFunction($event)">
   <label class="mr-sm-2" for="search">Search</label>
   <input class="form-control mb-2 mr-sm-2" id="search" [(ngModel)]="findstring"/>
   <button class="btn btn-primary mb-2" (click)="searchIn('init')">Search</button>

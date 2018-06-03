@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ru.testtask</groupId>
+        <artifactId>stackexchange-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <groupId>ru.testtask</groupId>
+    <artifactId>stackexchange</artifactId>
+    <packaging>pom</packaging>
+
+    <name>stackexchange-parent</name>
+
+    <modules>
+        <module>spring-boot-stackexchange</module>
+        <module>spring-boot-stackexchange-ui</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>ru.testtask</groupId>
+                <artifactId>spring-boot-stackexchange</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ru.testtask</groupId>
+                <artifactId>spring-boot-stackexchange-ui</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

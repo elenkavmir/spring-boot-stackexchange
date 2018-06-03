@@ -8,7 +8,6 @@ import {StackExchangeServiceService} from "./services/stack-exchange-service.ser
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   findstring: string;
   page: number = 1;
   limit: number = 10;
@@ -17,9 +16,16 @@ export class AppComponent {
   constructor(protected stackExchangeServiceService: StackExchangeServiceService) {}
 
   searchIn(page) {
-    this.page = (page == 'init') ? 1 : ((page == 'next') ? ++this.page : --this.page);
+    if (page)
+      this.page = (page == 'init') ? 1 : ((page == 'next') ? ++this.page : --this.page);
     this.stackExchangeServiceService.getQuestions(this.findstring, this.page, this.limit).subscribe(data => {
       this.wrapp = data as StackExchangeWrapper;
     }, error => alert("Ошибка запроса: " + error));
+  }
+
+  keyDownFunction(event){
+    if(event.keyCode == 13) {
+      this.searchIn('init');
+    }
   }
 }

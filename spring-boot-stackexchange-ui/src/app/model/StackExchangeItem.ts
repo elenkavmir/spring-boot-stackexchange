@@ -15,15 +15,15 @@ export class StackExchangeItem {
   /**
    * Количество ответов на вопрос
    */
-  answer_count: Date;
+  answer_count: number;
   /**
    * Дата последней активности по вопросу
    */
-  last_activity_date: Date;
+  last_activity_date: number;
   /**
    * Дата создания вопроса
    */
-  creation_date: Date;
+  creation_date: number;
   /**
    * Дата последнего редактирования вопроса
    */

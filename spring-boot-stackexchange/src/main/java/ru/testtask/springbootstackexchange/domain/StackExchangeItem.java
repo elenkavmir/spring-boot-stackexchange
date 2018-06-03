@@ -33,17 +33,17 @@ public class StackExchangeItem {
      * Дата последней активности по вопросу
      */
     @JsonProperty("last_activity_date")
-    Date lastActivityDate;
+    Long lastActivityDate;
     /**
      * Дата создания вопроса
      */
     @JsonProperty("creation_date")
-    Date createDate;
+    Long createDate;
     /**
      * Дата последнего редактирования вопроса
      */
     @JsonProperty("last_edit_date")
-    Date lastEditDate;
+    Long lastEditDate;
     /**
      * Идентификатор вопроса
      */
@@ -90,27 +90,27 @@ public class StackExchangeItem {
         this.answerCount = answerCount;
     }
 
-    public Date getLastActivityDate() {
+    public Long getLastActivityDate() {
         return lastActivityDate;
     }
 
-    public void setLastActivityDate(Date lastActivityDate) {
+    public void setLastActivityDate(Long lastActivityDate) {
         this.lastActivityDate = lastActivityDate;
     }
 
-    public Date getCreateDate() {
+    public Long getCreateLong() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Long createDate) {
         this.createDate = createDate;
     }
 
-    public Date getLastEditDate() {
+    public Long getLastEditDate() {
         return lastEditDate;
     }
 
-    public void setLastEditDate(Date lastEditDate) {
+    public void setLastEditDate(Long lastEditDate) {
         this.lastEditDate = lastEditDate;
     }
 

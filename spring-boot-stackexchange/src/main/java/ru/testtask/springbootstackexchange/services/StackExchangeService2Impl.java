@@ -14,13 +14,19 @@ import java.util.zip.GZIPInputStream;
 @Service
 public class StackExchangeService2Impl implements StackExchangService {
 
+    static final String urlStackExchange = "http://api.stackexchange.com/2.2";
+    static final String urlSearch = "/search?order=desc&sort=activity&filter=default&site=stackoverflow&run=true";
+
     @Autowired
     public StackExchangeService2Impl() {}
 
     @Override
     public StackExchangeWrapper getQuestions(String findString, Long offset, Long limit){
         try {
-            String url_ = "https://api.stackexchange.com/2.2/search?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=activity&intitle=java&filter=default";
+            String url_ = urlStackExchange + urlSearch
+                    + "&intitle=" + findString
+                    + ((offset != null) ? "&page=" + offset : "")
+                    + ((limit != null) ? "&pagesize=" + limit : ""); // todo url encode
             URL url = new URL(url_);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
