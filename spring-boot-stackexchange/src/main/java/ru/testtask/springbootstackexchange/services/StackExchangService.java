@@ -9,5 +9,5 @@ import java.util.List;
  * Сервис получения данных из StackExchang
  */
 public interface StackExchangService {
-    StackExchangeWrapper getQuestions(String findString, Long offset, Long limit);
+    StackExchangeWrapper getQuestions(String title, Long page, Long pagesize);
 }

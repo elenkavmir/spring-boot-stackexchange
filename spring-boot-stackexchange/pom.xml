@@ -2,16 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>ru.testtask</groupId>
-		<artifactId>stackexchange</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-
+	<groupId>ru.testtask</groupId>
 	<artifactId>spring-boot-stackexchange</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>spring-boot-stackexchange</name>
 	<description>test task Get StackExchange questions</description>
+
+	<!--<parent>-->
+		<!--<groupId>org.springframework.boot</groupId>-->
+		<!--<artifactId>spring-boot-starter-parent</artifactId>-->
+		<!--<version>1.5.3.RELEASE</version>-->
+		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+	<!--</parent>-->
 
 	<build>
 		<plugins>
@@ -41,12 +45,6 @@
 		</plugins>
 	</build>
 
-	<!--<parent>-->
-		<!--<groupId>org.springframework.boot</groupId>-->
-		<!--<artifactId>spring-boot-starter-parent</artifactId>-->
-		<!--<version>1.5.3.RELEASE</version>-->
-		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-	<!--</parent>-->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -55,11 +53,6 @@
 	</properties>
 
 	<dependencies>
-
-		<dependency>
-			<groupId>ru.testtask</groupId>
-			<artifactId>spring-boot-stackexchange-ui</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -83,15 +76,6 @@
 			<version>1.5.3.RELEASE</version>
 		</dependency>
 	</dependencies>
-
-	<!--<build>-->
-		<!--<plugins>-->
-			<!--<plugin>-->
-				<!--<groupId>org.springframework.boot</groupId>-->
-				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-			<!--</plugin>-->
-		<!--</plugins>-->
-	<!--</build>-->
 
 
 </project>

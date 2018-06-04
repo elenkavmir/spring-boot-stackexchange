@@ -1,16 +1,19 @@
-<div class="form-inline" (keydown)="keyDownFunction($event)">
-  <label class="mr-sm-2" for="search">Search</label>
-  <input class="form-control mb-2 mr-sm-2" id="search" [(ngModel)]="findstring"/>
-  <button class="btn btn-primary mb-2" (click)="searchIn('init')">Search</button>
+<div class="row">
+  <div class="col-md-auto form-group"></div>
 </div>
-<div class="form-group">
-  <app-table-items-find [wrapp]="wrapp"></app-table-items-find>
+<div class="row justify-content-center">
+    <div class="form-inline" (keydown)="keyDownFunction($event)">
+      <input class="form-control mb-2 mr-sm-2" [(ngModel)]="title"/>
+      <button class="btn btn-primary mb-2" (click)="searchIn('init')">Найти</button>
+    </div>
 </div>
-<ul class="pagination" *ngIf="wrapp && wrapp.items">
-  <li class="page-item" (click)="searchIn('prev')"><a class="page-link" href="#" onclick="return false">Previous</a></li>
-  <!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
-  <!--<li class="page-item active"><a class="page-link" href="#">2</a></li>-->
-  <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
-  <li class="page-item"  (click)="searchIn('next')"><a class="page-link" href="#" onclick="return false">Next</a></li>
+<ul class="pagination justify-content-center">
+  <li class="page-item" (click)="searchIn('prev')"  [ngClass]="{'disabled': page <= 1}"><a class="page-link" href="#" onclick="return false">Предыдущая</a></li>
+  <li class="page-item"  (click)="searchIn('next')" [ngClass]="{'disabled': !getHasMore()}"><a class="page-link" href="#" onclick="return false">Следующая</a></li>
+</ul>
+<router-outlet></router-outlet>
+<ul class="pagination justify-content-center">
+  <li class="page-item" (click)="searchIn('prev')" [ngClass]="{'disabled': page <= 1}"><a class="page-link" href="#" onclick="return false">Предыдущая</a></li>
+  <li class="page-item"  (click)="searchIn('next')" [ngClass]="{'disabled': !getHasMore()}"><a class="page-link" href="#" onclick="return false">Следующая</a></li>
 </ul>
 

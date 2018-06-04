@@ -8,6 +8,7 @@ import ru.testtask.springbootstackexchange.domain.StackExchangeWrapper;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 
@@ -20,33 +21,30 @@ public class StackExchangeService2Impl implements StackExchangService {
     @Autowired
     public StackExchangeService2Impl() {}
 
+
     @Override
-    public StackExchangeWrapper getQuestions(String findString, Long offset, Long limit){
+    public StackExchangeWrapper getQuestions(String title, Long page, Long pagesize){
         try {
             String url_ = urlStackExchange + urlSearch
-                    + "&intitle=" + findString
-                    + ((offset != null) ? "&page=" + offset : "")
-                    + ((limit != null) ? "&pagesize=" + limit : ""); // todo url encode
+                    + "&intitle=" + URLEncoder.encode(title,"UTF-8")
+                    + ((page != null) ? "&page=" + page : "")
+                    + ((pagesize != null) ? "&pagesize=" + pagesize : "");
             URL url = new URL(url_);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
-            System.out.println("RC:" + conn.getResponseCode());    // 200
-            System.out.println("RM:" + conn.getResponseMessage()); // "OK"
-            System.out.println("TYPE:" + conn.getContentType());
+            //System.out.println(url_);
 
-            // NOTE: Content is compressed by default.
-            // Some proxies decompress and deliver uncompressed content.
-            System.out.println("ENC:" + conn.getContentEncoding());
-
-            InputStream content = conn.getInputStream(); // InputStream
+            InputStream content = conn.getInputStream();
             String encoding = conn.getContentEncoding();
+            // проверяем формат
             if (encoding != null && encoding.equals("gzip")) {
                 content = new GZIPInputStream(content);
             }
             String result = new Scanner(content, "UTF-8").useDelimiter("\\A").next();
             content.close();
 
-            System.out.println(result);
+            //System.out.println(result);
+            // json -> object
             ObjectMapper mapper = new ObjectMapper();
             StackExchangeWrapper myObjects = mapper.readValue(result, StackExchangeWrapper.class);
             return myObjects;

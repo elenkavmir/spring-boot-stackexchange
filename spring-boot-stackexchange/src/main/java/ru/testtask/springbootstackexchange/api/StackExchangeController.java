@@ -30,14 +30,12 @@ public class StackExchangeController {
     @RequestMapping(value = "/questions",
             produces = {"application/json"},
             method = RequestMethod.GET)
-    public ResponseEntity<StackExchangeWrapper> getQuestions(@RequestParam(value = "findstring", required = true) String findString,
-                                                             @RequestParam(value = "offset", defaultValue = "1") Long offset, //fixme min value 1
-                                                             @RequestParam(value = "limit", defaultValue = "100") Long limit) {
-        try{
-            return ResponseEntity.ok(stackExchangService.getQuestions(findString, offset, limit));
-        }
-        catch (Exception ex) {
-            throw new RuntimeException(ex); //fixme
-        }
+    public ResponseEntity<StackExchangeWrapper> getQuestions(@RequestParam(value = "title", required = true) String title,
+                                                             @RequestParam(value = "page", defaultValue = "1") Long page, //fixme min value 1
+                                                             @RequestParam(value = "pagesize", defaultValue = "100") Long pagesize) {
+        if (page < 1)
+            return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(stackExchangService.getQuestions(title, page, pagesize));
     }
+
 }
