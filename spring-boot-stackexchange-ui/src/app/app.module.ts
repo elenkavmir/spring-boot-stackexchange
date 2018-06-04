@@ -8,8 +8,8 @@ import { TableItemsFindComponent } from './components/table-items-find/table-ite
 import {RouterModule, Routes} from "@angular/router";
 
 const appRoutes: Routes = [
-  {path: 'stackexchange_search', component: TableItemsFindComponent},
-  {path: '', redirectTo: 'stackexchange_search', pathMatch: 'full'}
+  {path: '', component: TableItemsFindComponent},
+  // {path: '', redirectTo: 'stackexchange_search', pathMatch: 'full'}
 ];
 
 @NgModule({

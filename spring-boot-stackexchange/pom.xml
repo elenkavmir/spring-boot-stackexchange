@@ -2,49 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ru.testtask</groupId>
-	<artifactId>spring-boot-stackexchange</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<artifactId>stackexchange</artifactId>
+	<packaging>war</packaging>
 
-	<name>spring-boot-stackexchange</name>
-	<description>test task Get StackExchange questions</description>
+	<name>stackexchange</name>
+	<description>stackexchange Project backend</description>
 
-	<!--<parent>-->
-		<!--<groupId>org.springframework.boot</groupId>-->
-		<!--<artifactId>spring-boot-starter-parent</artifactId>-->
-		<!--<version>1.5.3.RELEASE</version>-->
-		<!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-	<!--</parent>-->
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>validate</phase>
-						<goals><goal>copy-resources</goal></goals>
-						<configuration>
-							<outputDirectory>${basedir}/target/classes/static/</outputDirectory >
-							<resources>
-								<resource>
-									<directory>${basedir}/../spring-boot-stackexchange-ui/dist/spring-boot-stackexchange-ui/</directory >
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-
+	<parent>
+		<groupId>ru.testtask</groupId>
+		<artifactId>stackexchange-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,29 +21,38 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-			<version>1.5.3.RELEASE</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>1.5.3.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.8.RELEASE</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<version>1.5.3.RELEASE</version>
 		</dependency>
 	</dependencies>
 
-
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>../spring-boot-stackexchange-ui/dist/spring-boot-stackexchange-ui/</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

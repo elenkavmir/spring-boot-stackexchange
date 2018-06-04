@@ -13,16 +13,16 @@ import java.util.Scanner;
 import java.util.zip.GZIPInputStream;
 
 @Service
-public class StackExchangeService2Impl implements StackExchangService {
+public class StackExchangeServiceImpl implements StackExchangService {
 
     static final String urlStackExchange = "http://api.stackexchange.com/2.2";
     static final String urlSearch = "/search?order=desc&sort=activity&filter=default&site=stackoverflow&run=true";
 
     @Autowired
-    public StackExchangeService2Impl() {}
+    public StackExchangeServiceImpl() {}
 
 
-    @Override
+//    @Override
     public StackExchangeWrapper getQuestions(String title, Long page, Long pagesize){
         try {
             String url_ = urlStackExchange + urlSearch
