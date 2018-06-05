@@ -24,7 +24,6 @@
         <configuration>
           <nodeVersion>v8.9.0</nodeVersion>
           <npmVersion>5.5.1</npmVersion>
-          <!--<workingDirectory>src/main/frontend</workingDirectory>-->
         </configuration>
 
         <executions>

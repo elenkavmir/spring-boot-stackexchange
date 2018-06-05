@@ -21,8 +21,14 @@ public class StackExchangeServiceImpl implements StackExchangService {
     @Autowired
     public StackExchangeServiceImpl() {}
 
-
-//    @Override //todo ?
+    /**
+     * Получение вопросов по заголовку
+     * @param title - строка поиска
+     * @param page - страница поиска
+     * @param pagesize - размер страницы поиска
+     * @return StackExchangeWrapper
+     */
+    @Override
     public StackExchangeWrapper getQuestions(String title, Long page, Long pagesize){
         try {
             String url_ = urlStackExchange + urlSearch
@@ -32,7 +38,6 @@ public class StackExchangeServiceImpl implements StackExchangService {
             URL url = new URL(url_);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.connect();
-            //System.out.println(url_);
 
             InputStream content = conn.getInputStream();
             String encoding = conn.getContentEncoding();
@@ -43,14 +48,11 @@ public class StackExchangeServiceImpl implements StackExchangService {
             String result = new Scanner(content, "UTF-8").useDelimiter("\\A").next();
             content.close();
 
-            //System.out.println(result);
             // json -> object
             ObjectMapper mapper = new ObjectMapper();
-            StackExchangeWrapper myObjects = mapper.readValue(result, StackExchangeWrapper.class);
-            return myObjects;
+            return mapper.readValue(result, StackExchangeWrapper.class);
         } catch (Exception e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
-         return null;
     }
 }

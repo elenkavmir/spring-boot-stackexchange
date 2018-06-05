@@ -19,7 +19,7 @@ export class StackExchangeServiceService {
 
   constructor(private http: HttpClient, private location: Location, private platform: PlatformLocation) {
     this.baseUrl = (this.platform as any).location.pathname.slice(0,-1);
-    console.log((this.platform as any).location);
+    //console.log((this.platform as any).location);
   }
 
   /**
@@ -44,7 +44,8 @@ export class StackExchangeServiceService {
    * @returns {string}
    */
   errorRquestToString(error: HttpErrorResponse): string {
-    return error.error.status + " " + error.error.error + "\n" + error.error.message + "\nurl = " + error.error.path;
+    return error.status + " " + error.name + "\n" + error.message +
+      (error.error.path) ? (error.error.error + "\nurl = " + error.error.path) : "";
   }
 
 

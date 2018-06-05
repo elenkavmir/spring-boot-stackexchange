@@ -7,12 +7,12 @@
       <button class="btn btn-primary mb-2" (click)="searchIn('init')">Найти</button>
     </div>
 </div>
-<ul class="pagination justify-content-center">
+<ul class="pagination justify-content-center" *ngIf="page">
   <li class="page-item" (click)="searchIn('prev')"  [ngClass]="{'disabled': page <= 1}"><a class="page-link" href="#" onclick="return false">Предыдущая</a></li>
   <li class="page-item"  (click)="searchIn('next')" [ngClass]="{'disabled': !getHasMore()}"><a class="page-link" href="#" onclick="return false">Следующая</a></li>
 </ul>
 <router-outlet></router-outlet>
-<ul class="pagination justify-content-center">
+<ul class="pagination justify-content-center" *ngIf="page">
   <li class="page-item" (click)="searchIn('prev')" [ngClass]="{'disabled': page <= 1}"><a class="page-link" href="#" onclick="return false">Предыдущая</a></li>
   <li class="page-item"  (click)="searchIn('next')" [ngClass]="{'disabled': !getHasMore()}"><a class="page-link" href="#" onclick="return false">Следующая</a></li>
 </ul>

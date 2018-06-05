@@ -31,7 +31,7 @@ public class StackExchangeController {
             produces = {"application/json"},
             method = RequestMethod.GET)
     public ResponseEntity<StackExchangeWrapper> getQuestions(@RequestParam(value = "title", required = true) String title,
-                                                             @RequestParam(value = "page", defaultValue = "1") Long page, //fixme min value 1
+                                                             @RequestParam(value = "page", defaultValue = "1") Long page,
                                                              @RequestParam(value = "pagesize", defaultValue = "100") Long pagesize) {
         if (page < 1L)
             page = 1L;
