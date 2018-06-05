@@ -1,4 +1,7 @@
 import {StackExchangeOwner} from "./StackExchangeOwner";
+/**
+ * Информация по вопросу
+ */
 export class StackExchangeItem {
   /**
    * Теги вопроса

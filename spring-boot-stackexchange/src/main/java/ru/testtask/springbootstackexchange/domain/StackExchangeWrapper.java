@@ -10,9 +10,18 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StackExchangeWrapper {
+    /**
+     * Список найденных вопросов
+     */
     List<StackExchangeItem> items;
+    /**
+     * Есть ли еще данные по запросу
+     */
     @JsonProperty("has_more")
     boolean hasMore;
+    /**
+     * Сообщение ошибки, если была ошибка
+     */
     @JsonProperty("error_message")
     String errorMessage;
 

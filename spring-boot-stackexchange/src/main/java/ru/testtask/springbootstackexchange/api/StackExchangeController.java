@@ -33,8 +33,8 @@ public class StackExchangeController {
     public ResponseEntity<StackExchangeWrapper> getQuestions(@RequestParam(value = "title", required = true) String title,
                                                              @RequestParam(value = "page", defaultValue = "1") Long page, //fixme min value 1
                                                              @RequestParam(value = "pagesize", defaultValue = "100") Long pagesize) {
-        if (page < 1)
-            return ResponseEntity.badRequest().build();
+        if (page < 1L)
+            page = 1L;
         return ResponseEntity.ok(stackExchangService.getQuestions(title, page, pagesize));
     }
 

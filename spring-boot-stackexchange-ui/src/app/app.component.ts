@@ -8,7 +8,14 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  /**
+   * Строка текущего поиска
+   */
   title: string;
+  /**
+   * Страница поиска
+   * @type {number}
+   */
   page: number = 1;
 
   constructor(protected stackExchangeServiceService: StackExchangeServiceService, private route: ActivatedRoute, private router: Router) {}

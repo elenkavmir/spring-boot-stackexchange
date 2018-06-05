@@ -54,12 +54,28 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>manual-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+            <configuration>
+              <filesets>
+                <fileset>
+                  <directory>dist</directory>
+                </fileset>
+                <!--<fileset>-->
+                  <!--<directory>node_modules</directory>-->
+                <!--</fileset>-->
+              </filesets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
-    <!--<resources>-->
-      <!--<resource>-->
-        <!--<directory>dist</directory>-->
-        <!--<targetPath>static</targetPath>-->
-      <!--</resource>-->
-    <!--</resources>-->
   </build>
 </project>

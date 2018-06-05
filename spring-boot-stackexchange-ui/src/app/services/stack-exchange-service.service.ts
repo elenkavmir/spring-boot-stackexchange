@@ -6,17 +6,29 @@ import {Location, PlatformLocation} from "@angular/common";
   providedIn: 'root'
 })
 export class StackExchangeServiceService {
-  private baseUrl = '';//'http://localhost:8081';
-  private hasMore: boolean = false;
+  /**
+   * Базовый url
+   * @type {string}
+   */
+  protected baseUrl = '';
+  /**
+   * Флаг - есть ли еще данные по данному запросу
+   * @type {boolean}
+   */
+  protected hasMore: boolean = false;
 
   constructor(private http: HttpClient, private location: Location, private platform: PlatformLocation) {
-    this.baseUrl = (this.platform as any).location.pathname;
+    this.baseUrl = (this.platform as any).location.pathname.slice(0,-1);
     console.log((this.platform as any).location);
-    console.log((this.platform as any).location.href);
-    console.log((this.platform as any).location.origin);
-    console.log(this.baseUrl);
   }
 
+  /**
+   * Запрос вопросов
+   * @param {string} title - содержимое вопроса
+   * @param {number} page - страница поиска
+   * @param {number} pagesize - размер страницы поиска
+   * @returns {Observable<Object>}
+   */
   getQuestions(title: string, page: number, pagesize: number) {
     let url: string = this.baseUrl + '/api/rest/questions?title=' + (title);
     if (page)
@@ -26,6 +38,11 @@ export class StackExchangeServiceService {
     return this.http.get(url);
   }
 
+  /**
+   * Преобразование ошибки http в строку
+   * @param {HttpErrorResponse} error
+   * @returns {string}
+   */
   errorRquestToString(error: HttpErrorResponse): string {
     return error.error.status + " " + error.error.error + "\n" + error.error.message + "\nurl = " + error.error.path;
   }
