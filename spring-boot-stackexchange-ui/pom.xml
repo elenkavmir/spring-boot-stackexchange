@@ -27,21 +27,21 @@
         </configuration>
 
         <executions>
-          <!--Нужно впервый раз, потом можно опустить-->
-          <!--<execution>
+          <!--Нужно впервый раз, потом при разработке можно опустить-->
+          <execution>
             <id>install node and npm</id>
             <goals>
               <goal>install-node-and-npm</goal>
             </goals>
-          </execution>-->
+          </execution>
 
-          <!--Нужно впервый раз и при clean node_modules, иначе можно опустить-->
-          <!--<execution>
+          <!--Нужно впервый раз и при clean node_modules, иначе при разработке можно опустить-->
+          <execution>
             <id>npm install</id>
             <goals>
               <goal>npm</goal>
             </goals>
-          </execution>-->
+          </execution>
 
           <execution>
             <id>npm run build</id>
@@ -69,7 +69,7 @@
                 <fileset>
                   <directory>dist</directory>
                 </fileset>
-                <!--Слишком затратно для каждого раза-->
+                <!--Слишком затратно для каждого раза при разработке-->
               <!--  <fileset>
                   <directory>node_modules</directory>
                 </fileset>-->
