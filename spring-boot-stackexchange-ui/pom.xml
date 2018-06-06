@@ -27,19 +27,21 @@
         </configuration>
 
         <executions>
-          <!--<execution>-->
-            <!--<id>install node and npm</id>-->
-            <!--<goals>-->
-              <!--<goal>install-node-and-npm</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
+          <!--Нужно впервый раз, потом можно опустить-->
+          <!--<execution>
+            <id>install node and npm</id>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+          </execution>-->
 
-          <!--<execution>-->
-            <!--<id>npm install</id>-->
-            <!--<goals>-->
-              <!--<goal>npm</goal>-->
-            <!--</goals>-->
-          <!--</execution>-->
+          <!--Нужно впервый раз и при clean node_modules, иначе можно опустить-->
+          <!--<execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+          </execution>-->
 
           <execution>
             <id>npm run build</id>
@@ -67,9 +69,10 @@
                 <fileset>
                   <directory>dist</directory>
                 </fileset>
-                <!--<fileset>-->
-                  <!--<directory>node_modules</directory>-->
-                <!--</fileset>-->
+                <!--Слишком затратно для каждого раза-->
+              <!--  <fileset>
+                  <directory>node_modules</directory>
+                </fileset>-->
               </filesets>
             </configuration>
           </execution>
